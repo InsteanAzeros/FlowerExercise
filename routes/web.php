@@ -20,6 +20,7 @@ Route::get('/flowers/create', [FlowerController::class, 'create'])->name('flower
 Route::post('/flowers/create', [FlowerController::class, 'store']);
 
 Route::get('/flowers/update/{id}', [FlowerController::class, 'edit'])->name('flowers.edit');
-Route::post('/flowers/update/{id}', [FlowerController::class, 'update']);
+Route::put('/flowers/update/{id}', [FlowerController::class, 'update']);
 
+// Route::delete('/flowers/delete/{id}', [FlowerController::class, 'destroy'])->name('flowers.delete');
 Route::get('/flowers/delete/{id}', [FlowerController::class, 'destroy'])->name('flowers.delete');
