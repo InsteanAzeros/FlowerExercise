@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFlowerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,8 +35,10 @@ class FlowerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreFlowerRequest $request)
     {
+        $request->validated();
+
         $result = DB::insert('INSERT INTO flowers(name, price)
         VALUES(?, ?)', [$request->name, $request->price]);
 
@@ -75,8 +78,10 @@ class FlowerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreFlowerRequest $request, $id)
     {
+        $request->validated();
+
         $result = DB::update('UPDATE flowers
         SET name = ?, price = ? WHERE id = ?', [$request->name, $request->price, $id]);
 
