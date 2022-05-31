@@ -16,5 +16,10 @@ use App\Http\Controllers\FlowerController;
 
 Route::get('/flowers', [FlowerController::class, 'index']);
 
-Route::get('/flowers/create', [FlowerController::class, 'create']);
+Route::get('/flowers/create', [FlowerController::class, 'create'])->name('flowers.create');
 Route::post('/flowers/create', [FlowerController::class, 'store']);
+
+Route::get('/flowers/update/{id}', [FlowerController::class, 'edit'])->name('flowers.edit');
+Route::post('/flowers/update/{id}', [FlowerController::class, 'update']);
+
+Route::get('/flowers/delete/{id}', [FlowerController::class, 'destroy'])->name('flowers.delete');

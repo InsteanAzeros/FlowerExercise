@@ -64,7 +64,8 @@ class FlowerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $flowers = DB::select('SELECT * FROM flowers WHERE id = ?', [$id]);
+        return view('update-flower', ['flower' => $flowers[0]]);
     }
 
     /**
@@ -76,7 +77,13 @@ class FlowerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $result = DB::update('UPDATE flowers
+        SET name = ?, price = ? WHERE id = ?', [$request->name, $request->price, $id]);
+
+        if ($result)
+            return redirect('flowers')->with('success', 'Updated successfully');
+        else
+            return redirect('flowers')->with('error', 'Problem inserting. Try later.');
     }
 
     /**
@@ -87,6 +94,11 @@ class FlowerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = DB::delete('DELETE FROM flowers WHERE id = ?', [$id]);
+
+        if ($result)
+            return redirect('flowers')->with('success', 'Deleted successfully');
+        else
+            return redirect('flowers')->with('error', 'Problem inserting. Try later.');
     }
 }

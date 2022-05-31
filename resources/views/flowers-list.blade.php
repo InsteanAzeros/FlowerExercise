@@ -18,6 +18,8 @@
     @foreach ($flo as $flower)
         <strong>Name : </strong> {{ $flower->name }}<br>
         <strong>Price : </strong> {{ $flower->price }}<br>
+        <a href="{{ route('flowers.edit', [$flower->id]) }}">Edit</a>
+        <a href="{{ route('flowers.delete', [$flower->id]) }}">Delete</a>
         <hr>
     @endforeach
 @endsection
