@@ -40,9 +40,9 @@ class FlowerController extends Controller
         VALUES(?, ?)', [$request->name, $request->price]);
 
         if ($result)
-            return redirect('flowers')->with('message', 'Inserted successfully');
+            return redirect('flowers')->with('success', 'Inserted successfully');
         else
-            return 'Problem inserting. Try again later.';
+            return redirect('flowers')->with('error', 'Problem inserting. Try later');
     }
 
     /**

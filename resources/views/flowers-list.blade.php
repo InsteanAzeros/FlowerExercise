@@ -3,9 +3,15 @@
 @section('title', 'Flowers List')
 
 @section('content')
-    @if (session('message'))
+    @if (session('success'))
         <div class="alert alert-success" style="color: green">
-            {{ session('message') }}
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-success" style="color: red">
+            {{ session('error') }}
         </div>
     @endif
 
