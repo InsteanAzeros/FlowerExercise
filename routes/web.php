@@ -15,16 +15,6 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::get('/test', function () {
-    $file_content = Storage::get('MOCK_DATA.json');
-    // $file_content = file_get_contents('MOCK_DATA.json');
-    $movies = json_decode($file_content);
-    dd($movies);
-});
-
-
-
-
 Route::get('/flowers', [FlowerController::class, 'index']);
 
 Route::get('/flowers/create', [FlowerController::class, 'create'])->name('flowers.create');
