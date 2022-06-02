@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFlowerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Flower;
 
 class FlowerController extends Controller
 {
@@ -15,7 +16,7 @@ class FlowerController extends Controller
      */
     public function index()
     {
-        $flowers = DB::select('SELECT * FROM flowers');
+        $flowers = Flower::all();
         return view('flowers-list', ['flo' => $flowers]);
     }
 
