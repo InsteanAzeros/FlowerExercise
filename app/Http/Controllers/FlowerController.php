@@ -40,8 +40,12 @@ class FlowerController extends Controller
     {
         $request->validated();
 
-        $result = DB::insert('INSERT INTO flowers(name, price)
-        VALUES(?, ?)', [$request->name, $request->price]);
+        $flower = new Flower;
+
+        $flower->name = $request->name;
+        $flower->price = $request->price;
+
+        $result = $flower->save();
 
         if ($result)
             return redirect('flowers')->with('success', 'Inserted successfully');
@@ -57,7 +61,10 @@ class FlowerController extends Controller
      */
     public function show($id)
     {
-        //
+        $flower = Flower::find($id);
+        // $flower = Flower::where('id', $id)->first();
+
+        return view('flower-detail', ['flower' => $flower]);
     }
 
     /**
@@ -68,8 +75,8 @@ class FlowerController extends Controller
      */
     public function edit($id)
     {
-        $flowers = DB::select('SELECT * FROM flowers WHERE id = ?', [$id]);
-        return view('update-flower', ['flower' => $flowers[0]]);
+        $flower = Flower::find($id);
+        return view('update-flower', ['flower' => $flower]);
     }
 
     /**
@@ -83,8 +90,15 @@ class FlowerController extends Controller
     {
         $request->validated();
 
-        $result = DB::update('UPDATE flowers
-        SET name = ?, price = ? WHERE id = ?', [$request->name, $request->price, $id]);
+        // $result = DB::update('UPDATE flowers
+        // SET name = ?, price = ? WHERE id = ?', [$request->name, $request->price, $id]);
+
+        $flower = Flower::find($id);
+
+        $flower->name = $request->name;
+        $flower->price = $request->price;
+
+        $result = $flower->save();
 
         if ($result)
             return redirect('flowers')->with('success', 'Updated successfully');
@@ -100,7 +114,7 @@ class FlowerController extends Controller
      */
     public function destroy($id)
     {
-        $result = DB::delete('DELETE FROM flowers WHERE id = ?', [$id]);
+        $result = Flower::destroy($id);
 
         if ($result)
             return redirect('flowers')->with('success', 'Deleted successfully');
