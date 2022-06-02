@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlowerController;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,16 @@ use App\Http\Controllers\FlowerController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/test', function () {
+    $file_content = Storage::get('MOCK_DATA.json');
+    // $file_content = file_get_contents('MOCK_DATA.json');
+    $movies = json_decode($file_content);
+    dd($movies);
+});
+
+
+
 
 Route::get('/flowers', [FlowerController::class, 'index']);
 
