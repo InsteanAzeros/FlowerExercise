@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlowerController;
+use App\Http\Middleware\EnsureIsLoggedIn;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Middleware\EnsureUserIsLoggedIn;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,8 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/flowers', [FlowerController::class, 'index']);
 
-Route::get('/flowers/create', [FlowerController::class, 'create'])->name('flowers.create');
+Route::get('/flowers/create', [FlowerController::class, 'create'])->name('flowers.create')->middleware(EnsureIsLoggedIn::class);
+
 Route::post('/flowers/create', [FlowerController::class, 'store']);
 
 Route::get('/flowers/{id}', [FlowerController::class, 'show'])->name('flowers.details');
