@@ -121,4 +121,20 @@ class FlowerController extends Controller
         else
             return redirect('flowers')->with('error', 'Problem inserting. Try later.');
     }
+
+    public function login()
+    {
+        return view('login');
+    }
+
+    public function authenticated(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required',
+        ]);
+
+        session(['email' => $request->email]);
+
+        return redirect('/flowers');
+    }
 }
