@@ -25,7 +25,7 @@ class CommentSeeder extends Seeder
         DB::table('comments')->insert(
             [
                 'comment' => 'Jane is dying, help us.',
-                'flower_id' => 3
+                'flower_id' => 2
             ]
         );
     }

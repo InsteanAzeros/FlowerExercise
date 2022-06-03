@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('comment', 200);
 
             $table->unsignedBigInteger('flower_id');
-            $table->foreign('flower_id')->references('id')->on('flowers');
+            $table->foreign('flower_id')->references('id')->on('flowers')->onDelete('cascade');
             $table->timestamps();
         });
     }
