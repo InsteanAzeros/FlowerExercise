@@ -64,7 +64,7 @@ class FlowerController extends Controller
         $flower = Flower::find($id);
         // $flower = Flower::where('id', $id)->first();
 
-        return view('flower-detail', ['flower' => $flower]);
+        return view('flower-details', ['flower' => $flower]);
     }
 
     /**

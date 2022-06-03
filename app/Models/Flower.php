@@ -17,4 +17,9 @@ class Flower extends Model
 
     // If you are not using timestamps() features (created_at / updated_at)
     // public $timestamps = false;
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
