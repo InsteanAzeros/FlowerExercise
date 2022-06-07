@@ -13,6 +13,8 @@
         </div>
     @endif
 
+    <h2>Login</h2>
+
     <form method="POST">
         @csrf
         <input type="text" name="email" placeholder="Email"><br>

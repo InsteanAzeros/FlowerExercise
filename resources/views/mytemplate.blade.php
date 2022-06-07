@@ -23,9 +23,19 @@
             <li>
                 <a href="/flowers/create">Create new flower</a>
             </li>
-            <li>
-                <a href="/login">Login</a>
-            </li>
+
+            @if (session()->has('email'))
+                <li>
+                    <a href="/logout">Logout</a>
+                </li>
+            @else
+                <li>
+                    <a href="/login">Login</a>
+                </li>
+            @endif
+
+
+
         </ul>
     </nav>
 

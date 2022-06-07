@@ -13,6 +13,7 @@
         </div>
     @endif
 
+    <h2>Create new flower</h2>
     <form action="" method="POST">
         @csrf
         <input type="text" name="name" placeholder="Name"><br>

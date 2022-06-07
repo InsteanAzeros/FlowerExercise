@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlowerController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\EnsureIsLoggedIn;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Middleware\EnsureUserIsLoggedIn;
@@ -17,8 +18,10 @@ use App\Http\Middleware\EnsureUserIsLoggedIn;
 |
 */
 
-Route::get('/login', [FlowerController::class, 'login']);
-Route::post('/login', [FlowerController::class, 'authenticated']);
+Route::get('/login', [UserController::class, 'login']);
+Route::post('/login', [UserController::class, 'authenticated']);
+
+Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/flowers', [FlowerController::class, 'index']);
 
