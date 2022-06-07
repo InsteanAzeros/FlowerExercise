@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlowerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ApiController;
 use App\Http\Middleware\EnsureIsLoggedIn;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Middleware\EnsureUserIsLoggedIn;
@@ -17,6 +18,15 @@ use App\Http\Middleware\EnsureUserIsLoggedIn;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// API ROUTES
+Route::get('/api/flowers', [ApiController::class, 'index']);
+Route::get('/api/amount/{amount}', [ApiController::class, 'amount']);
+Route::get('/api/type/{type}', [ApiController::class, 'type']);
+Route::get('/api/flowers/{amount}/{type}', [ApiController::class, 'amountType']);
+
+
+// APPLICATION ROUTES
 
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [UserController::class, 'authenticated']);

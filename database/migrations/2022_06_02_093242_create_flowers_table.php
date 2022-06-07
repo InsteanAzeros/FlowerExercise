@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->double('price');
+            $table->enum('type', ['indoor', 'outdoor']);
             $table->timestamps();
         });
     }
