@@ -49,7 +49,7 @@ class UserController extends Controller
         ]);
 
         // Upload the file
-        $fileName = $request->poster->getClientOriginalName();
+        $fileName = $request->username . '.' . $request->poster->extension();
         $publicPath = public_path('uploads');
         $request->poster->move($publicPath, $fileName);
 
