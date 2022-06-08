@@ -6,6 +6,7 @@ use App\Http\Requests\StoreFlowerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Flower;
+use Illuminate\Support\Facades\Validator;
 
 class FlowerController extends Controller
 {
@@ -36,9 +37,16 @@ class FlowerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFlowerRequest $request)
+    public function store(Request $request)
     {
-        $request->validated();
+        $validations = Validator::make($request->all(), [
+            'name' => 'required|max:50',
+            'price' => 'required',
+        ]);
+
+        if ($validations->fails())
+            return response()->json(['errors' => $validations->errors()->all()]);
+
 
         $flower = new Flower;
 
@@ -47,10 +55,11 @@ class FlowerController extends Controller
 
         $result = $flower->save();
 
+
         if ($result)
-            return redirect('flowers')->with('success', 'Inserted successfully');
+            return response()->json(['success' => 'Inserted successfully']);
         else
-            return redirect('flowers')->with('error', 'Problem inserting. Try later');
+            return response()->json(['error' => 'Problem inserting. Try later']);
     }
 
     /**
